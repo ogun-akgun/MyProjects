@@ -13,6 +13,8 @@ VERSION
 # BMC IP/ Credentials can be assigned form command line
 1.46
 Fixed output file bug, ipv6 ip bug and bmc bug
+1.47
+Excluded virtual interfaces
 
 Copywright by Ogun Akgun, Windriver.
 ogun.akgun@windriver.com
@@ -54,7 +56,7 @@ Compile  g++ -o system_info_collector system_info_collector.cpp
 #include <arpa/inet.h>
 #include <iomanip>
 #include <cmath>
-const std::string VERSION = "V1.46";
+const std::string VERSION = "V1.47";
 
 class SystemInfoCollector {
 private:
@@ -260,7 +262,7 @@ public:
             void collectNetworkInterfaces() {
         // Get network interface information
 
-        std::string interfaceList = executeCommand("ip link show | grep '^[0-9]' | cut -d':' -f2 | tr -d ' ' | sort");
+        std::string interfaceList = executeCommand("ip link show | grep -v 'cali\\|bond\\|docker\\|lo\\|@\\|vir\\|br\\|rt' | grep '^[0-9]' | cut -d':' -f2 | tr -d ' ' | sort");
 
         std::istringstream iss(interfaceList);
         std::string interfaceName;
