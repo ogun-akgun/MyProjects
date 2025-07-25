@@ -448,7 +448,7 @@ public:
                         if (pPos != std::string::npos) {
                             std::string slotNum = ifaceInfo["name"].substr(1, pPos - 1);
                             std::string portNum = ifaceInfo["name"].substr(pPos + 1);
-                            description +="Port " + portNum;
+                            description +=" Port " + portNum;
                         }
                     }
                 }
