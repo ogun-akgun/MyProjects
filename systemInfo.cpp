@@ -38,6 +38,7 @@ Compile  g++ -o system_info_collector system_info_collector.cpp
   --o <output.txt>
 
 */
+
 #include <iostream>
 #include <string>
 #include <vector>
